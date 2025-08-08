@@ -29,7 +29,7 @@ Setup:
 <li>Click Clone (blue button)</li>
 <li>After it has loaded you should see, under the File button in the top left "Current Repository: Caistorians_Website"</li>
 <img width="307" height="57" alt="image" src="https://github.com/user-attachments/assets/f32ef406-7f62-49a9-9b18-f47c6569d6dc" /><br>
-<li>You can verify that this has worked by doing: Repository > Show in Explorer (ctrl + shift + F). The folder that opens should have(at the minimum) README.md (this file, so you can continue reading offline :D) (If you have "Show hidden files, folders and drives"enabled in file explorer, you should see the .git directory at the top of this folder, that designates that this folder behaves as a GITrepository, **DO NOT MUCK AROUND WITH THIS DIRECTORY**)</li>
+<li>You can verify that this has worked by doing: Repository > Show in Explorer (ctrl + shift + F). The folder that opens should have(at the minimum) README.md (this file, so you can continue reading offline :D) (If you have "Show hidden files, folders and drives"enabled in file explorer, you should see the .git directory at the top of this folder, that designates that this folder behaves as a GITrepository, <strong>DO NOT MUCK AROUND WITH THIS DIRECTORY</strong>)</li>
 </ol>
 
 <br><br>
@@ -45,7 +45,7 @@ Working (This is up for debate, feel free to make suggestions):
 <li>You now need to merge your branch, back into the main branch. Do this by:
 <ol>
 <li>Switch back to the main branch (or the branch you wish to merge into) and ensure it is up-to-date, by pulling from GitHub</li>
-<li>Either, click on the "Current Branch: main" drop down > "Choose a branch to merge into **main**", or Branch > Merge into current branch (ctrl + shift + M)</li>
+<li>Either, click on the "Current Branch: main" drop down > "Choose a branch to merge into <strong>main</strong>", or Branch > Merge into current branch (ctrl + shift + M)</li>
 <li>Select your branch and click "Create a merge commit" (the blue button), this should merge your branch with the main [1]</li>
 <li>Push main to GitHub, and delete your old branch</li>
 </ol>
