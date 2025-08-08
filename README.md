@@ -42,5 +42,10 @@ Working (This is up for debate, feel free to make suggestions):
 <img width="456" height="325" alt="image" src="https://github.com/user-attachments/assets/19981df2-7540-4aff-9281-195c7cd671e5" />
 <li>Make your changes/edits to this branch, this can be whatever, just ensure whatever you change/create/delete remains in the repository</li>
 <li>As you go along, be sure to commit your changes (preferably with appropriate summaries & descriptions), but especially when you are finished with this branch, commit everything and push to GitHub</li>
-<li>You now need to merge your branch, back into the main branch.</li>
+<li>You now need to merge your branch, back into the main branch. Do this by:
+<ol>
+<li>Switch back to the main branch (or the branch you wish to merge into) and ensure it is up-to-date, by pulling from GitHub</li>
+<li>Either, click on the "Current Branch: main" drop down > "Choose a branch to merge into **main**", or Branch > Merge into current branch (ctrl + shift + M)</li>
+</ol>Select your branch and click "Create a merge commit" (the blue button)
+</li>
 </ol>
