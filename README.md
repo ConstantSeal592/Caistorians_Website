@@ -46,6 +46,16 @@ Working (This is up for debate, feel free to make suggestions):
 <ol>
 <li>Switch back to the main branch (or the branch you wish to merge into) and ensure it is up-to-date, by pulling from GitHub</li>
 <li>Either, click on the "Current Branch: main" drop down > "Choose a branch to merge into **main**", or Branch > Merge into current branch (ctrl + shift + M)</li>
-</ol>Select your branch and click "Create a merge commit" (the blue button)
+<li>Select your branch and click "Create a merge commit" (the blue button), this should merge your branch with the main [1]</li>
+<li>Push main to GitHub, and delete your old branch</li>
+</ol>
 </li>
 </ol>
+
+<br><br>
+[1] On occasion (most the time), when merging, you maybe prompted by GitHub desktop to first pull the most recent version of the project from GitHub (do this, but first ensure your changes are commited locally). When merging your changes with those from GitHub, you may encounter a merge conflict, this is where GIT cannot automattically merge the changes and requires a big strong burly man to come and help it. VS code is an excellent tool for doing this, and along with GitHub desktop it is just a point (read extemely carefully and ask for help if you get stuck) and click adventure game. Please be careful when resolving merge conflicts, as carelessness can cause countless problems and delete someone else's work
+
+<br><br>
+If you need any help or have questions, Yash or myself have a fair bit of experience with GIT now, so should be able to help
+
+--Written with love, Reuben
