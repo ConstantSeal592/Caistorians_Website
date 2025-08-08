@@ -41,6 +41,6 @@ Working (This is up for debate, feel free to make suggestions):
 <li>Create a branch of the project (and name accordingly). This branch is a copy of the project at the time you create it. Do this by clicking on the "Current Branch: main" drop down > New branch, or Branch > New branch (ctrl + shift + N)</li>
 <img width="456" height="325" alt="image" src="https://github.com/user-attachments/assets/19981df2-7540-4aff-9281-195c7cd671e5" />
 <li>Make your changes/edits to this branch, this can be whatever, just ensure whatever you change/create/delete remains in the repository</li>
-<li>As you go along, be sure to commit your changes (preferably with appropriate summaries & descriptions), but especially when you are finished with this branch, commit everything</li>
-<li></li>
+<li>As you go along, be sure to commit your changes (preferably with appropriate summaries & descriptions), but especially when you are finished with this branch, commit everything and push to GitHub</li>
+<li>You now need to merge your branch, back into the main branch.</li>
 </ol>
