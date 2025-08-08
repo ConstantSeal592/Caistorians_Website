@@ -56,6 +56,6 @@ Working (This is up for debate, feel free to make suggestions):
 [1] On occasion (most the time), when merging, you maybe prompted by GitHub desktop to first pull the most recent version of the project from GitHub (do this, but first ensure your changes are commited locally). When merging your changes with those from GitHub, you may encounter a merge conflict, this is where GIT cannot automattically merge the changes and requires a big strong burly man to come and help it. VS code is an excellent tool for doing this, and along with GitHub desktop it is just a point (read extemely carefully and ask for help if you get stuck) and click adventure game. Please be careful when resolving merge conflicts, as carelessness can cause countless problems and delete someone else's work
 
 <br><br>
-If you need any help or have questions, Yash or myself have a fair bit of experience with GIT now, so should be able to help
+If you need any help or have questions, Yash or myself have a fair bit of experience with GIT now, so should be able to help. The prior link to w3schools is also an excellent place for a bed time read (it puts you to sleep fast)
 
 --Written with love, Reuben
