@@ -1,0 +1,64 @@
+body {
+    margin: 0;
+}
+
+#title div {
+    margin: 0;
+}
+#title h1 {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 80px;
+    margin: 0px;
+    text-align: center;
+    left: 50%;
+    transform: (-50%, 0);
+    width: 100%;
+}
+#title h2 {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 50px;
+    margin: 0px;
+}
+#title img {
+    width: 100%;
+}
+.container {
+    position: relative;
+}
+.background {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: #000000AA;
+    color: white;
+    width: 100%;
+    height: 40%;
+}
+.text {
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 10px;
+}
+
+#magazines {
+    display: flex;
+    align-items: flex-start;
+    gap: 50px;
+    overflow-x: auto;
+}
+#magazines > .A4 {
+    flex: 0 0 auto;
+    aspect-ratio: 0.707;
+    width: 300px;
+}
+
+#magazines > .A4:nth-child(even) {
+    margin-top: 200px;
+    background-color: burlywood;    
+}
+#magazines > .A4:nth-child(odd) {
+    background-color: beige;
+}
