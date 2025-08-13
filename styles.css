@@ -46,8 +46,10 @@ body {
 #magazines {
     display: flex;
     align-items: flex-start;
+    padding: 20px 20px;
     gap: 50px;
     overflow-x: auto;
+    background-color: #AAAAAA;
 }
 #magazines > .A4 {
     flex: 0 0 auto;
@@ -61,4 +63,24 @@ body {
 }
 #magazines > .A4:nth-child(odd) {
     background-color: beige;
+}
+
+#about {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+    box-sizing: border-box;
+}
+#about > div{
+    top: 0px;
+    box-sizing: border-box;
+    background-color: #AAAAAA;
+    width: calc(50% - 10px);
+    padding: 10px;
+
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 15px;
+}
+#about li {
+    margin-bottom: 10px;
 }
