@@ -1,13 +1,15 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html>
     <head>
         <title>Caistorians</title>
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="{% static 'frontend/styles.css' %}">
     </head>
 
     <body>
         <div class="container "id="title">
-            <img src="OldHall.jpg" alt="OldHall">
+            <img src="{% static 'frontend/OldHall.jpg' %}" alt="OldHall">
             <div class="background">
                 <div class="text">
                     <h2>The</h2>
