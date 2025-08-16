@@ -59,3 +59,6 @@ Working (This is up for debate, feel free to make suggestions):
 If you need any help or have questions, Yash or myself have a fair bit of experience with GIT now, so should be able to help. The prior link to w3schools is also an excellent place for a bed time read (it puts you to sleep fast)
 
 --Written with love, Reuben
+
+<br>
+PS: see <a href='VirtualEnvironment.md'> for hot virtual environment talk
