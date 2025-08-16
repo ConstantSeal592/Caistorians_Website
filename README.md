@@ -61,4 +61,4 @@ If you need any help or have questions, Yash or myself have a fair bit of experi
 --Written with love, Reuben
 
 <br>
-PS: see <a href='VirtualEnvironment.md'> for hot virtual environment talk
+PS: see <a href='VirtualEnvironment.md'>VirtualEnvironment.md</a> for hot virtual environment talk
