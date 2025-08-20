@@ -21,9 +21,7 @@ from django.urls import path,include
 urlpatterns = [
     path("admin/", admin.site.urls),
 
-    # Your custom accounts app (register, login, logout views you made)
+    #yash stuff feel free to delete
     path("accounts/", include("accounts.urls")),
-
-    # Django’s built-in authentication (password reset/change, etc.)
     path("", include("django.contrib.auth.urls")),
 ]
