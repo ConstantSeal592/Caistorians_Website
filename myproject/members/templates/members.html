@@ -1,0 +1,40 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Caistorians Members db</title>
+        <style>
+            table, tr, th, td {
+                border: 1px solid black;
+            }
+            table {
+                width: 100%;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1>Caistorians Members db</h1>
+        <div id="database">
+            <table>
+                <tr>
+                    <th>index</th>
+                    <th>firstname</th>
+                    <th>surname</th>
+                    <th>left_caistor</th>
+                    <th>statement</th>
+                </tr>
+                {% for member in membersdb %}
+                <tr>
+                    <td>{% member.index %}</td>
+                    <td>{% member.firstname %}</td>
+                    <td>{% member.surname %}</td>
+                    <td>{% member.left_caistor %}</td>
+                    <td>{% member.statement %}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </body>
+</html>

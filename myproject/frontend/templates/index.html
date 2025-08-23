@@ -5,6 +5,8 @@
     <head>
         <title>Caistorians</title>
         <link rel="stylesheet" href="{% static 'frontend/styles.css' %}">
+
+        <script src="{% static 'frontend/scroll.js' %}" defer></script>
     </head>
 
     <body>
@@ -18,18 +20,22 @@
             </div>
         </div>
         <br><br>
-        <div class="container" id="magazines">
-            <div class="A4">1</div>
-            <div class="A4">2</div>
-            <div class="A4">3</div>
-            <div class="A4">4</div>
-            <div class="A4">1</div>
-            <div class="A4">2</div>
-            <div class="A4">3</div>
-            <div class="A4">4</div>
+        <div id="side-scroll">
+            <button id="scroll_left">Left</button>
+            <div class="container" id="magazines">
+                <div class="A4">1</div>
+                <div class="A4">2</div>
+                <div class="A4">3</div>
+                <div class="A4">4</div>
+                <div class="A4">1</div>
+                <div class="A4">2</div>
+                <div class="A4">3</div>
+                <div class="A4">4</div>
+            </div>
+            <button id="scroll_right">Right</button>
         </div>
         <br><br>
-        <div id="about">
+        <div id="about" class="pannel-display">
             <div>
                 <h2>Aims of The Caistorians' Association:</h2>
                 <ul>
@@ -54,9 +60,14 @@
                 </ul>
             </div>
         </div>
-        <br><br>
-        <div id="members">
-            Memberss
+        <div id="members" class="pannel-display">
+            <div>
+                <h2>Members of the Caistorians' Association:</h2>
+                <p>Members go here</p>
+            </div>
+            <div style="display: flex; justify-content: center; background-color: #00000000;">
+                <img src="{% static 'frontend/Logo.png' %}" alt="Logo">
+            </div>
         </div>
 
     </body>

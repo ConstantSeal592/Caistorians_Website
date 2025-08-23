@@ -43,18 +43,28 @@ body {
     bottom: 10px;
 }
 
+#side-scroll {
+    display: flex;
+}
+
 #magazines {
     display: flex;
     align-items: flex-start;
     padding: 20px 20px;
     gap: 50px;
     overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: 20px;
     background-color: #AAAAAA;
+    scrollbar-width: none;
 }
 #magazines > .A4 {
     flex: 0 0 auto;
     aspect-ratio: 0.707;
     width: 300px;
+    scroll-snap-align: start;
 }
 
 #magazines > .A4:nth-child(even) {
@@ -65,13 +75,26 @@ body {
     background-color: beige;
 }
 
-#about {
+#magazines > #scroll_left {
+    position: absolute;
+    box-sizing: border-box;
+    left: 0px;
+    height: calc(100% - 40px);
+}
+#magazines > #scroll_right {
+    position: absolute;
+    box-sizing: border-box;
+    right: 0px;
+    height: calc(100% - 40px);
+}
+
+.pannel-display {
     display: flex;
     justify-content: space-between;
     margin: 20px;
     box-sizing: border-box;
 }
-#about > div{
+.pannel-display > div{
     top: 0px;
     box-sizing: border-box;
     background-color: #AAAAAA;
@@ -81,6 +104,6 @@ body {
     font-family: 'Courier New', Courier, monospace;
     font-size: 15px;
 }
-#about li {
+.pannel-display li {
     margin-bottom: 10px;
 }
