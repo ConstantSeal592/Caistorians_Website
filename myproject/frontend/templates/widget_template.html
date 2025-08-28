@@ -1,0 +1,7 @@
+<div class="widget" style="
+grid-column: {{data.x}} {% if data.x %}/{% endif %} span {{data.width}};
+grid-row: {{data.y}} {% if data.y %}/{% endif %} span {{data.height}};
+{{styles}}">
+    {% block content %}
+    {% endblock %}
+</div>

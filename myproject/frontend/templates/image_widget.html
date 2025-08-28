@@ -1,0 +1,10 @@
+{% extends 'widget_template.html' %}
+{% load static %}
+
+replace with a general purpose image widget
+
+{% block content %}
+<div style="display: flex; justify-content: center; background-color: #00000000; height: 500px;">
+    <img src="{% static data.static_img_path %}" alt="Logo" style="height: 100%; width: 100%; object-fit: contain;">
+</div>
+{% endblock %}

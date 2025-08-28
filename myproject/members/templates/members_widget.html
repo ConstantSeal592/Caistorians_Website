@@ -1,0 +1,24 @@
+{% extends 'widget_template.html' %}
+{% load static %}
+
+{% block content %}
+<div>
+    <h2>Members of the Caistorians' Association:</h2>
+    <div id="side-scroll" style="height: 75%;">
+        <button class="scroll_button" id="scroll_left_mem">Left</button>
+        <div class="scrollFrame" id="membersScroll" style="padding: 5px; scroll-padding-left: 5%;">
+            <div id="invis_member_card"></div>
+            {% for member in membersdb %}
+            <div id="member_card">
+                <h1 id="name">{{member.firstname}} {{member.surname}}</h1>
+                <p id="year">Left Caistor in {{member.year_left}}</p>
+                <p id="text">{{member.statement}}</p>
+                <img id="photo" src="{% static member.static_img_path %}">
+            </div>
+            {% endfor %}
+            <div id="invis_member_card"></div>
+        </div>
+        <button class="scroll_button" id="scroll_right_mem">Right</button>
+    </div>
+</div>
+{% endblock %}
