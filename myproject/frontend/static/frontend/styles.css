@@ -102,14 +102,11 @@ body {
 }
 #invis_member_card{
     flex: 0 0 90%;
-    display: grid;
-    grid-template-columns: auto auto auto;
-    grid-template-rows: auto auto auto;
 }
 #member_card {
     flex: 0 0 90%;
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: auto auto auto;
     scroll-snap-align: start;
     gap: 10px;
@@ -137,4 +134,20 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+#grid_layout {
+    display: grid;
+    gap: 20px;
+    /* grid-template-columns: auto auto auto auto; */
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin: 5px;
+}
+.widget {
+    justify-self: center;
+    align-self: center;
+    background-color: #AAAAAA;
+    padding: 5px;
+    width: 100%;
+    height: 100%;
 }
