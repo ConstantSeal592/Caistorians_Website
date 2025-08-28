@@ -1,0 +1,42 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Caistorians Members db</title>
+        <style>
+            table, tr, th, td {
+                border: 1px solid black;
+            }
+            table {
+                width: 100%;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1>Caistorians Members db</h1>
+        <div id="database">
+            <table>
+                <tr>
+                    <th>index</th>
+                    <th>firstname</th>
+                    <th>surname</th>
+                    <th>year left</th>
+                    <th>statement</th>
+                    <th>photo</th>
+                </tr>
+                {% for member in membersdb %}
+                <tr>
+                    <td>{{ member.id }}</td>
+                    <td>{{ member.firstname }}</td>
+                    <td>{{ member.surname }}</td>
+                    <td>{{ member.year_left }}</td>
+                    <td>{{ member.statement }}</td>
+                    <td><img src="{% static member.static_img_path %}"></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </body>
+</html>
