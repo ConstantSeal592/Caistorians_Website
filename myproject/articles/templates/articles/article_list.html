@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Articles</h2>
+<ul>
+  {% for article in articles %}
+    <li>
+      <strong>{{ article.title }}</strong> by {{ article.author.username }}<br>
+      Related events:
+      {% if article.events.all %}
+        <ul>
+          {% for event in article.events.all %}
+            <li><a href="{% url 'event-detail' event.id %}">{{ event.title }}</a></li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        None
+      {% endif %}
+    </li>
+  {% empty %}
+    <li>No articles found.</li>
+  {% endfor %}
+</ul>
+{% endblock %}

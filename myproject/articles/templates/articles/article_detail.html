@@ -1,0 +1,10 @@
+<h3>Related Events</h3>
+<ul>
+  {% for event in object.events.all %}
+    <li>
+      <a href="{% url 'event-detail' event.id %}">{{ event.title }}</a>
+    </li>
+  {% empty %}
+    <li>No events assigned to this article.</li>
+  {% endfor %}
+</ul>
