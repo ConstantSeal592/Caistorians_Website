@@ -6,7 +6,7 @@ from . import models
 def members(request):
     membersdb = models.member.objects.all().values()
 
-    template = loader.get_template("members,html")
+    template = loader.get_template("members.html")
     context = {
         'membersdb': membersdb
     }

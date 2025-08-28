@@ -22,16 +22,18 @@
                     <th>index</th>
                     <th>firstname</th>
                     <th>surname</th>
-                    <th>left_caistor</th>
+                    <th>year left</th>
                     <th>statement</th>
+                    <th>photo</th>
                 </tr>
                 {% for member in membersdb %}
                 <tr>
-                    <td>{% member.index %}</td>
-                    <td>{% member.firstname %}</td>
-                    <td>{% member.surname %}</td>
-                    <td>{% member.left_caistor %}</td>
-                    <td>{% member.statement %}</td>
+                    <td>{{ member.id }}</td>
+                    <td>{{ member.firstname }}</td>
+                    <td>{{ member.surname }}</td>
+                    <td>{{ member.year_left }}</td>
+                    <td>{{ member.statement }}</td>
+                    <td><img src="{% static member.static_img_path %}"></td>
                 </tr>
                 {% endfor %}
             </table>
