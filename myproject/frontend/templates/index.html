@@ -5,13 +5,39 @@
 
 <head>
     <title>Caistorians</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{% static 'frontend/styles.css' %}">
 
     <script src="{% static 'frontend/scroll.js' %}" defer></script>
 </head>
 
 <body>
-    <div class="container " id="title">
+    <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="{% static 'images/Logo.png' %}" alt="Logo">
+                Caistorians
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon" style="color:white;"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#title">Top</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#magazines">Magazines</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#members">Members</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-light ms-3" href="{% url 'profile' %}">Profile</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="title-screen " id="title">
         <img src="{% static 'frontend/OldHall.jpg' %}" alt="OldHall">
         <div class="background">
             <div class="text">
@@ -21,14 +47,15 @@
         </div>
     </div>
     <br><br>
-    <div id="grid_layout">
+    <div class="grid_layout">
         {% for widget in widgets %}
-            {% if widget.type == "file" %}
-                {% include widget.file with data=widget.parameters %}
-            {% elif widget.type == "string" %}
-                {{widget.html}}
-            {% endif %}
+        {% if widget.type == "file" %}
+        {% include widget.file with data=widget.parameters %}
+        {% elif widget.type == "string" %}
+        {{widget.html}}
+        {% endif %}
         {% endfor %}
     </div>
 </body>
+
 </html>

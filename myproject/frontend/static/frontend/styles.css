@@ -1,13 +1,37 @@
-* {box-sizing: border-box;}
+* {
+    box-sizing: border-box;
+}
 
 body {
     margin: 0;
 }
 
-#title div {
+/* Nav bar */
+.navbar-custom {
+    background: #2c3e50;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-custom .navbar-brand,
+.navbar-custom .nav-link {
+    color: #fff;
+}
+
+.navbar-custom .nav-link:hover {
+    color: #e74c3c;
+}
+
+.navbar-brand img {
+    height: 40px;
+    margin-right: 10px;
+}
+
+/* Title screen */
+.title-screen div {
     margin: 0;
 }
-#title h1 {
+
+.title-screen h1 {
     font-family: 'Courier New', Courier, monospace;
     font-size: 80px;
     margin: 0px;
@@ -16,35 +40,44 @@ body {
     transform: (-50%, 0);
     width: 100%;
 }
-#title h2 {
+
+.title-screen h2 {
     font-family: 'Courier New', Courier, monospace;
     font-size: 50px;
     margin: 0px;
 }
-#title img {
+
+.title-screen img {
     width: 100%;
+    display: block;
 }
-.container {
+
+.title-screen {
     position: relative;
 }
+
 .background {
     position: absolute;
     top: 0px;
     left: 0px;
-    background-color: #000000AA;
+    background-color: #00000044;
     color: white;
     width: 100%;
-    height: 40%;
+    height: 100%;
+    overflow: hidden;
 }
+
 .text {
     padding-left: 20px;
     padding-right: 20px;
     width: 100%;
     position: absolute;
-    bottom: 10px;
+    top: 30%;
+    transform: (-50%, 0);
 }
 
-#side-scroll {
+/* Magazines and Members*/
+.side-scroll-container {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -64,46 +97,28 @@ body {
     background-color: #AAAAAA;
     scrollbar-width: none;
 }
-#magazines > .A4 {
+
+/* Magazines */
+.A4 {
     flex: 0 0 auto;
     aspect-ratio: 0.707;
     width: 300px;
     scroll-snap-align: start;
 }
-
-#magazines > .A4:nth-child(even) {
+.A4:nth-child(even) {
     margin-top: 200px;
-    background-color: burlywood;    
+    background-color: burlywood;
 }
-#magazines > .A4:nth-child(odd) {
+.A4:nth-child(odd) {
     background-color: beige;
 }
 
-/* .scroll_button {
-    flex: 1;
-} */
-
-.pannel-display {
-    display: flex;
-    justify-content: space-between;
-    margin: 20px;
-}
-.pannel-display > div{
-    top: 0px;
-    background-color: #AAAAAA;
-    width: calc(50% - 10px);
-    padding: 10px;
-
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 15px;
-}
-.pannel-display li {
-    margin-bottom: 10px;
-}
-#invis_member_card{
+/* Members */
+.invis_member_card {
     flex: 0 0 90%;
 }
-#member_card {
+
+.member_card {
     flex: 0 0 90%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -111,24 +126,26 @@ body {
     scroll-snap-align: start;
     gap: 10px;
 }
-#member_card > #name {
+
+.member_card>#name {
     grid-row: 1;
     grid-column: 1 /span 2;
     align-self: center;
-    justify-self: center;
 }
-#member_card > #year {
+
+.member_card>#year {
     grid-row: 1;
     grid-column: 3;
     align-self: center;
     justify-self: center;
 }
-#member_card > #text {
+
+.member_card>#text {
     grid-row: 2 /span 2;
     grid-column: 1 /span 2;
-    justify-self: center;
 }
-#member_card > #photo {
+
+.member_card>#photo {
     grid-row: 2 /span 2;
     grid-column: 3;
     width: 100%;
@@ -136,13 +153,15 @@ body {
     object-fit: cover;
 }
 
-#grid_layout {
+/* Grid and widgets */
+.grid_layout {
     display: grid;
-    gap: 20px;
+    gap: 40px;
     /* grid-template-columns: auto auto auto auto; */
     grid-template-columns: 1fr 1fr 1fr 1fr;
     margin: 5px;
 }
+
 .widget {
     justify-self: center;
     align-self: center;
@@ -150,4 +169,17 @@ body {
     padding: 5px;
     width: 100%;
     height: 100%;
+
+    border-radius: 12px;
+    box-shadow: 4px -4px 20px rgba(0,0,0,0.5);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.widget:hover {
+    transform: translateY(-3px);
+    box-shadow: 8px -8px 20px rgba(0,0,0,0.8);
+}
+
+.widget a {
+    color: #e51700;
 }
