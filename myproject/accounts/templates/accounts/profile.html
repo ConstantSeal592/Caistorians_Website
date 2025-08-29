@@ -14,7 +14,11 @@
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Caistorians</a>
     <div class="d-flex">
-      <a href="{% url 'logout' %}" class="btn btn-outline-light">Logout</a>
+      <!-- Logout Form (POST) -->
+      <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-outline-light">Logout</button>
+      </form>
     </div>
   </div>
 </nav>
@@ -59,6 +63,7 @@
             <div class="mb-3">
               <label for="dob" class="form-label">Date of Birth</label>
               <input type="date" class="form-control" id="dob" name="dob"
+                     max="{{ today|date:'Y-m-d' }}"
                      value="{{ request.user.profile.dob|default:'' }}">
             </div>
 

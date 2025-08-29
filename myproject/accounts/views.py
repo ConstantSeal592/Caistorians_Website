@@ -19,16 +19,23 @@ def login_view(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return redirect("/accounts/register/")  # the actual path
+            return redirect("/accounts/profile/")  # the actual path
 
     else:
         form = LoginForm()
     return render(request, "accounts/login.html", {"form": form})
 
+
+from django.views.decorators.http import require_POST
+@require_POST
 def logout_view(request):
     logout(request)
-    return redirect("home")
+    return render(request, "accounts/index.html")
 
+
+
+def index_view(request):
+    return render(request, "accounts/index.html")
 
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
