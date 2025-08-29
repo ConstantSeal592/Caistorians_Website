@@ -61,3 +61,7 @@ def billing_setup_view(request):
 @login_required #  LEARN WRAPPERS
 def profile_view(request):
     return render(request, "accounts/profile.html")
+
+
+def GetWidgets():
+    return [{'type': 'file', 'file': 'widgets/account_widget.html', 'parameters': {'width':1, 'height':1}}]

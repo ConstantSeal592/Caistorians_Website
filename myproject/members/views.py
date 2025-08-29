@@ -18,13 +18,13 @@ def GetWidgets():
         }
     }
     
-    html = loader.render_to_string("members_widget.html", context)
+    html = loader.render_to_string("widgets/members_widget.html", context)
     return [{'type': 'string', 'html': html}]
 
 def members(request):
     membersdb = getdb()
 
-    template = loader.get_template("members.html")
+    template = loader.get_template("members/members.html")
     context = {
         'membersdb': membersdb
     }
