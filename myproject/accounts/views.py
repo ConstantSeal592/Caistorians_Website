@@ -8,7 +8,7 @@ def register_view(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect("home")
+            return redirect("/")
     else:
         form = CustomUserCreationForm()
     return render(request, "accounts/register.html", {"form": form})
@@ -58,6 +58,35 @@ def billing_setup_view(request):
     return render(request, "accounts/billing_setup.html")
 
 
-@login_required #  LEARN WRAPPERS
+
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from django.utils import timezone
+
+@login_required
 def profile_view(request):
-    return render(request, "accounts/profile.html")
+    user = request.user
+    today = timezone.now().date()
+
+    if request.method == "POST":
+        email = request.POST.get("email")
+        password = request.POST.get("password")
+        confirm_password = request.POST.get("confirm_password")
+        phone = request.POST.get("phone")
+        dob = request.POST.get("dob")
+
+        if password and password == confirm_password:
+            user.set_password(password)
+
+        user.email = email
+        user.phone = phone
+        user.dob = dob
+        user.save()
+        return redirect("profile")
+
+    return render(request, "accounts/profile.html", {"today": today})
+
+
+
+def GetWidgets():
+    return [{'type': 'file', 'file': 'widgets/account_widget.html', 'parameters': {'width':1, 'height':1}}]
