@@ -4,7 +4,8 @@ from django.db import models
 class CustomUser(AbstractUser):
     bio = models.TextField(blank=True, null=True)
     profile_pic = models.ImageField(upload_to='profiles/', blank=True, null=True)
-    
+    dob = models.DateField(blank=True, null=True)
+    phone = models.CharField(max_length=20, blank=True, null=True)
     groups = models.ManyToManyField(
         Group,
         related_name='customuser_set',  # avoids clash with auth.User.groups

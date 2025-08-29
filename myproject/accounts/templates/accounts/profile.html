@@ -12,9 +12,9 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Caistorians</a>
+    <a class="navbar-brand" href="/">Caistorians</a>
     <div class="d-flex">
-      <!-- Logout Form (POST) -->
+      <!-- Logout Form -->
       <form method="post" action="{% url 'logout' %}">
         {% csrf_token %}
         <button type="submit" class="btn btn-outline-light">Logout</button>
@@ -45,26 +45,31 @@
                      value="{{ request.user.email }}" required>
             </div>
 
-            <!-- Password (change) -->
+            <!-- New Password -->
             <div class="mb-3">
               <label for="password" class="form-label">New Password</label>
               <input type="password" class="form-control" id="password" name="password">
-              <div class="form-text">Leave blank if you don’t want to change it.</div>
+            </div>
+
+            <!-- Confirm New Password -->
+            <div class="mb-3">
+              <label for="confirm_password" class="form-label">Confirm New Password</label>
+              <input type="password" class="form-control" id="confirm_password" name="confirm_password">
             </div>
 
             <!-- Phone Number -->
             <div class="mb-3">
               <label for="phone" class="form-label">Phone Number</label>
               <input type="text" class="form-control" id="phone" name="phone"
-                     value="{{ request.user.profile.phone|default:'' }}">
+                     value="{{ request.user.phone|default:'' }}">
             </div>
 
             <!-- Date of Birth -->
             <div class="mb-3">
               <label for="dob" class="form-label">Date of Birth</label>
               <input type="date" class="form-control" id="dob" name="dob"
-                     max="{{ today|date:'Y-m-d' }}"
-                     value="{{ request.user.profile.dob|default:'' }}">
+                     value="{{ request.user.dob|date:'Y-m-d'|default:'' }}"
+                     max="{{ today|date:'Y-m-d' }}">
             </div>
 
             <!-- Save Button -->
