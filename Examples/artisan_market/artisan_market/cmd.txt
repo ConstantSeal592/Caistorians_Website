@@ -1,0 +1,7 @@
+Task	Command
+Create venv	python -m venv venv
+Activate venv	.\venv\Scripts\activate
+Install Django	pip install django
+Start project	django-admin startproject .
+Create app	python manage.py startapp marketplace
+Run dev server	python manage.py runserver

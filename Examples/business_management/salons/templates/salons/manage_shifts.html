@@ -1,0 +1,38 @@
+{% extends "core/base.html" %}
+
+{% block title %}Holiday Overrides{% endblock %}
+
+{% block content %}
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+
+    <p>{{ form.weekday.label_tag }} {{ form.weekday }}</p>
+    <p>{{ form.start_time.label_tag }} {{ form.start_time }}</p>
+    <p>{{ form.end_time.label_tag }} {{ form.end_time }}</p>
+    <p>{{ form.repeat_weekly.label_tag }} {{ form.repeat_weekly }}</p>
+
+    <button type="submit">Save Shift</button>
+</form>
+  
+  <h3>Your Weekly Shifts:</h3>
+  <ul>
+    {% for shift in shifts %}
+      <li>{{ shift.get_weekday_display }}: {{ shift.start_time }} - {{ shift.end_time }} {% if shift.repeat_weekly %}(Repeats){% endif %}</li>
+    {% empty %}
+      <li>No shifts scheduled</li>
+    {% endfor %}
+  </ul>
+  
+  <h3>Upcoming Week</h3>
+  <ul>
+    {% for sched in upcoming_schedule %}
+      <li>
+        {{ sched.date }} ({{ sched.shift.get_weekday_display }}): 
+        {{ sched.start }} - {{ sched.end }}
+        <a href="{% url 'salons:skip_shift' sched.shift.id sched.date %}">Skip this day</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

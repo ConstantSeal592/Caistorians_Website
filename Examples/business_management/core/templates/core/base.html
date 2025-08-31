@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Salon HR</title>
+</head>
+<body>
+    <nav>
+        <ul>
+          {% if user.is_authenticated %}
+            
+            <!-- Common link for all logged-in users -->
+            <li><a href="{% url 'salons:salon_list' %}">salon list</a></li>
+      
+            <!-- Links for managers only -->
+            {% if user.role == 'manager' %}
+            <li><a href="{% url 'accounts:manager_dashboard' %}">Manager Dashboard</a></li>
+            <li><a href="{% url 'accounts:create_staff' %}">Add Staff</a></li>
+            <li><a href="{% url 'accounts:my_staff' %}">My Staff</a></li>
+
+              <!-- Add more manager links here -->
+            {% endif %}
+      
+            <!-- Links for staff only -->
+            {% if user.role == 'staff' %}
+              <li><a href="{% url 'accounts:staff_dashboard' %}">Staff Dashboard</a></li>
+              <!-- Add more staff links here -->
+            {% endif %}
+      
+            <!-- Links for clients only -->
+            {% if user.role == 'client' %}
+              <!-- Add more client links here -->
+            {% endif %}
+      
+            <li><a href="{% url 'accounts:logout' %}">Logout</a></li>
+      
+          {% else %}
+            <!-- For unauthenticated users -->
+            <li><a href="{% url 'accounts:login' %}">Login</a></li>
+            <li><a href="{% url 'accounts:register' %}">Register</a></li>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'salons:salon_list' %}">All Salons</a></li>
+            <li><a href="{% url 'accounts:create_manager' %}">Create Manager</a></li>
+            
+            
+            
+            
+            <!-- Other public links here -->
+          {% endif %}
+        </ul>
+      </nav>
+
+    <hr>
+
+    {% block content %}
+    {% endblock %}
+  </body>
+  </html>

@@ -1,0 +1,12 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+  <h2>Delete Salon: {{ salon.name }}</h2>
+  <p>Are you sure you want to delete this salon?</p>
+
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Yes, Delete</button>
+    <a href="{% url 'accounts:manager_dashboard' %}">Cancel</a>
+  </form>
+{% endblock %}

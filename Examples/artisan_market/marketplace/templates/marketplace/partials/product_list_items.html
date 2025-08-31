@@ -1,0 +1,14 @@
+{% for product in products %}
+  <li>
+    <a href="{% url 'product_detail' product.pk %}" style="text-decoration: none; color: inherit; display: block;">
+      <div style="border:1px solid #ccc; padding:10px; margin-bottom:10px;">
+        <img src="{{ product.image.url }}" width="150" />
+        <h2>{{ product.title }}</h2>
+        <p>{{ product.description }}</p>
+        <strong>${{ product.price }}</strong>
+      </div>
+    </a>
+  </li>
+{% empty %}
+  <p>No products found.</p>
+{% endfor %}

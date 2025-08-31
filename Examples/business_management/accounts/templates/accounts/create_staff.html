@@ -1,0 +1,6 @@
+<h2>Create Staff Member</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Create Staff</button>
+</form>

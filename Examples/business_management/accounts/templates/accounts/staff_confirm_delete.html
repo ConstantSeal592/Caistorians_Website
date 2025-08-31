@@ -1,0 +1,12 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+  <h2>Confirm Staff Deletion</h2>
+  <p>Are you sure you want to delete staff member: <strong>{{ staff_user.get_full_name }}</strong>?</p>
+
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Yes, Delete</button>
+    <a href="{% url 'accounts:my_staff' %}">Cancel</a>
+  </form>
+{% endblock %}

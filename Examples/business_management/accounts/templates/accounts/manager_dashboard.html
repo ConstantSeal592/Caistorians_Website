@@ -1,0 +1,109 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+{% load custom_filters %}
+
+<h1>Manager Dashboard</h1>
+
+<section>
+  <h2>Salon Overview</h2>
+  <!-- Placeholder: Display salon info summary here -->
+  <p>Salon Name: {{ request.user.salon.name }}</p>
+  <p>Address: {{ request.user.salon.address }}</p>
+  <p>Phone: {{ request.user.salon.phone_number }}</p>
+  <p>Description: {{ request.user.salon.description }}</p>
+  <section>
+    <h2>Opening Hours & Staff Shifts</h2>
+
+    <ul>
+      {% for day_data in week_data %}
+        <li>
+          <strong>{{ day_data.weekday|get_day_name }}</strong>: 
+          {% if day_data.opening_hours %}
+            {% for oh in day_data.opening_hours %}
+              {{ oh.open_time|time:"H:i" }} - {{ oh.close_time|time:"H:i" }}{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+          {% else %}
+            Closed
+          {% endif %}
+    
+          <br>
+          <em>Staff shifts:</em>
+          {% if day_data.shifts %}
+            <ul>
+              {% for shift in day_data.shifts %}
+                <li>{{ shift.staff.get_full_name }}: {{ shift.start_time|time:"H:i" }} - {{ shift.end_time|time:"H:i" }}</li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            No staff shifts assigned.
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+    
+  </section>
+</section>
+
+<section>
+  <h2>Edit Salon Details</h2>
+  <p><a href="{% url 'salons:edit_salon' request.user.salon.id %}">Edit Salon Information</a></p>
+</section>
+<section>
+    <h2>Opening Hours</h2>
+    <p><a href="{% url 'salons:edit_opening_hours' %}">Edit Opening Hours</a></p>
+    <p><a href="{% url 'salons:holiday_list' %}">View/Edit Holidays</a></p>
+    <p><a href="{% url 'salons:holiday_add' %}">Add New Holiday</a></p>
+  {% if holidays %}
+  <h3>Upcoming Holiday Overrides</h3>
+  <ul>
+    {% for holiday in holidays %}
+      <li>
+        <strong>{{ holiday.date|date:"D, M j, Y" }}:</strong>
+        {% if holiday.is_closed %}
+          Closed
+        {% else %}
+          Open from {{ holiday.open_time|time:"H:i" }} to {{ holiday.close_time|time:"H:i" }}
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}
+</ul>
+</section>
+</section>
+<section>
+  <section>
+    <h2>Services Offered</h2>
+    {% if services %}
+      <ul>
+        {% for service in services %}
+          <li>
+            <strong>{{ service.name }}</strong> - ${{ service.price }}<br>
+            Duration: {{ service.duration_minutes }} minutes
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No services have been added yet.</p>
+    {% endif %}
+  </section>  
+  <p><a href="{% url 'salons:service_list' request.user.salon.id %}">Manage Services</a></p>
+</section>
+
+<section>
+  <h2>Staff Management</h2>
+  <p><a href="{% url 'accounts:my_staff' %}">View / Manage Staff</a></p>
+  <p><a href="{% url 'salons:manage_shifts' %}">Manage your shifts</a></p>
+</section>
+<section>
+<ul>
+
+
+
+<!-- Add more sections for appointments, reports, etc -->
+<section>
+    <p><a href="{% url 'salons:salon_delete' request.user.salon.id %}">Delete this Salon</a></p>
+</section>
+  
+{% endblock %}

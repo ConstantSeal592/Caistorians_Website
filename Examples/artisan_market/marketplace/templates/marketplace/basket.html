@@ -1,0 +1,47 @@
+{% extends "marketplace/base.html" %}
+
+{% block title %}Your Basket{% endblock %}
+
+{% block content %}
+<h1>Your Basket</h1>
+
+{% if items %}
+  <form method="post" action="{% url 'update_basket' %}">
+    {% csrf_token %}
+    <ul style="list-style: none; padding: 0;">
+      {% for item in items %}
+        <li>
+          <div style="border:1px solid #ccc; padding:10px; margin-bottom:10px; display: flex; align-items: center;">
+            <a href="{% url 'product_detail' item.product.pk %}" style="display: flex; align-items: center; text-decoration: none; color: inherit; flex-shrink: 0; margin-right: 20px;">
+              <img src="{{ item.product.image.url }}" width="150" alt="{{ item.product.title }}" />
+              <h2 style="margin: 0 0 0 10px;">{{ item.product.title }}</h2>
+            </a>
+
+            <div style="flex-grow: 1; margin-left: 20px;">
+              <p style="margin: 0 0 5px 0;">Price: ${{ item.product.price }}</p>
+              <label>
+                Qty:
+                <input type="number" name="quantity_{{ item.product.id }}" value="{{ item.quantity }}" min="1" style="width: 60px;" />
+              </label>
+              <p style="margin: 5px 0;">Total: <strong>${{ item.total_price }}</strong></p>
+              <a href="{% url 'remove_from_basket' item.product.id %}" style="color: #d00;">Remove</a>
+            </div>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+
+    <button type="submit">Update Quantities</button>
+  </form>
+
+  <h3>Total: ${{ total }}</h3>
+
+  <form action="{% url 'checkout' %}" method="post">
+    {% csrf_token %}
+    <button type="submit">Proceed to Checkout</button>
+  </form>
+{% else %}
+  <p>Your basket is empty.</p>
+{% endif %}
+
+{% endblock %}

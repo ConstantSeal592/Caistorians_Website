@@ -1,0 +1,23 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+
+
+<h1>Staff Members at {{ request.user.salon.name }}</h1>
+
+{% if staff_list %}
+  <ul>
+    {% for user in staff_list %}
+      <li>
+        {{ user.get_full_name }} ({{ user.username }}) — Email: {{ user.email }} — Role: {{ user.get_role_display }}    - Salon: {{ user.salon}}
+        (<a href="{% url 'accounts:staff_delete' user.id %}">Delete</a>)
+
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>No staff or managers found for your salon.</p>
+{% endif %}
+
+<!-- Optional: Link to add new staff -->
+{% endblock %}

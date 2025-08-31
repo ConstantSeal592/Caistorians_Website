@@ -1,0 +1,51 @@
+{% extends "core/base.html" %}
+
+{% block title %}Salon List{% endblock %}
+
+{% block content %}
+  <h1>Salons</h1>
+
+  <form method="get" action="{% url 'salons:salon_list' %}" style="margin-bottom:20px;">
+    <input type="text" name="q" placeholder="Search salons..." value="{{ query|default:'' }}" style="padding:5px;"/>
+
+    <select name="sort" style="padding:5px;">
+      <option value="newest" {% if sort == 'newest' %}selected{% endif %}>Newest</option>
+      <option value="name_asc" {% if sort == 'name_asc' %}selected{% endif %}>Name A-Z</option>
+      <option value="name_desc" {% if sort == 'name_desc' %}selected{% endif %}>Name Z-A</option>
+    </select>
+
+    <button type="submit" style="padding:5px 10px;">Filter</button>
+  </form>
+
+  {% if salons %}
+    <ul style="list-style: none; padding: 0;">
+      {% for salon in salons %}
+        <li>
+          <a href="{% url 'salons:salon_detail' salon.pk %}" style="text-decoration: none; color: inherit; display: block;">
+            <div style="border:1px solid #ccc; padding:15px; margin-bottom:15px; border-radius: 5px; box-shadow: 1px 1px 5px rgba(0,0,0,0.1);">
+              <h2>{{ salon.name }}</h2>
+              <p><strong>Address:</strong> {{ salon.address|default:"N/A" }}</p>
+              <p><strong>Phone:</strong> {{ salon.phone_number|default:"N/A" }}</p>
+              <p>{{ salon.description|truncatewords:30|default:"No description available." }}</p>
+            </div>
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+
+    <div class="pagination" style="margin-top:20px;">
+      {% if salons.has_previous %}
+        <a href="?{% if query %}q={{ query }}&{% endif %}{% if sort %}sort={{ sort }}&{% endif %}page={{ salons.previous_page_number }}" style="margin-right:10px;">Previous</a>
+      {% endif %}
+
+      <span>Page {{ salons.number }} of {{ salons.paginator.num_pages }}</span>
+
+      {% if salons.has_next %}
+        <a href="?{% if query %}q={{ query }}&{% endif %}{% if sort %}sort={{ sort }}&{% endif %}page={{ salons.next_page_number }}" style="margin-left:10px;">Next</a>
+      {% endif %}
+    </div>
+
+  {% else %}
+    <p>No salons available.</p>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "core/base.html" %}
+
+{% block title %}Delete Holiday Override{% endblock %}
+
+{% block content %}
+  <h1>Delete Holiday Override</h1>
+  <p>Are you sure you want to delete the holiday override for {{ holiday.date }}?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Yes, delete</button>
+    <a href="{% url 'salons:holiday_list' %}">Cancel</a>
+  </form>
+{% endblock %}

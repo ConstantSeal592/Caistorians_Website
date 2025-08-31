@@ -1,0 +1,23 @@
+{% extends "marketplace/base.html" %}
+{% block title %}Manage Your Listings{% endblock %}
+
+{% block content %}
+<h1>Your Listings</h1>
+<a href="{% url 'create_product' %}">Add New Product</a> |
+<a href="{% url 'upload_seller_video' %}">Upload Video</a>
+
+<ul>
+  {% for product in products %}
+    <li>
+      {{ product.title }} - ${{ product.price }}
+      <a href="{% url 'product_edit' product.id %}">Edit</a>
+      <form method="post" action="{% url 'product_delete' product.pk %}" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit" style="background:none; border:none; color:#d00; cursor:pointer;">Delete</button>
+      </form>
+    </li>
+  {% empty %}
+    <p>You have no listings.</p>
+  {% endfor %}
+</ul>
+{% endblock %}

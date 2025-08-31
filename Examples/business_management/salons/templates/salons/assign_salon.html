@@ -1,0 +1,12 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+<h2>Create Your Salon</h2>
+<p>Manager: {{ manager.username }}</p>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Create Salon</button>
+</form>
+{% endblock %}

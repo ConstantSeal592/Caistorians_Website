@@ -1,0 +1,25 @@
+{% extends "marketplace\base.html" %}
+{% load static %}
+
+{% block content %}
+  <h2>Edit Your Profile</h2>
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save Profile</button>
+  </form>
+<a href="{% url 'manage_listings' %}">Manage Listings</a>
+
+<h2>Your Listings</h2>
+<ul>
+  {% for product in products %}
+    <li>
+      <a href="{% url 'product_detail' product.id %}">{{ product.title }}</a>
+      - ${{ product.price }}
+      <!-- optionally add edit/delete links -->
+    </li>
+  {% empty %}
+    <li>You have no listings yet.</li>
+  {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends "marketplace/base.html" %}
+
+{% block title %}My Profile{% endblock %}
+
+{% block content %}
+
+
+
+
+<h1>{{ profile_user.username }}'s Profile</h1>
+
+{% if profile.profile_picture %}
+  <img src="{{ profile.profile_picture.url }}" alt="{{ profile_user.username }}" style="width: 150px; height: 150px; border-radius: 50%;">
+{% else %}
+  <p>No profile picture.</p>
+{% endif %}
+
+{% if profile %}
+  <p>Bio: {{ profile.bio }}</p>
+  <!-- other artist profile fields -->
+{% else %}
+  <p>No artist profile available.</p>
+{% endif %}
+{% if request.user == profile_user %}
+  <p><a href="{% url 'edit_profile' %}" class="btn">Edit Profile</a></p>
+{% endif %}
+<h2>Products</h2>
+<ul style="list-style-type:none; padding-left:0;">
+  {% for product in products %}
+    <li style="margin-bottom: 15px;">
+      <a href="{% url 'product_detail' product.pk %}" style="text-decoration: none; color: inherit; display: block;">
+        <div style="border:1px solid #ccc; padding:10px; display: flex; align-items: center;">
+          <img src="{{ product.image.url }}" width="150" alt="{{ product.title }}" style="flex-shrink: 0; margin-right: 20px;" />
+          <div>
+            <h2 style="margin: 0 0 10px 0;">{{ product.title }}</h2>
+            <p style="margin: 0 0 10px 0;">{{ product.description }}</p>
+            <strong>${{ product.price }}</strong>
+          </div>
+        </div>
+      </a>
+    </li>
+  {% empty %}
+    <li>No products yet.</li>
+  {% endfor %}
+</ul>
+
+{% if videos %}
+  <h2>Videos</h2>
+  <div style="display: flex; overflow-x: auto; gap: 10px;">
+    {% for video in videos %}
+      <div>
+        <strong>{{ video.title }}</strong><br />
+        <video width="250" controls>
+          <source src="{{ video.video.url }}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    {% endfor %}
+  </div>
+{% else %}
+  <p>No videos uploaded.</p>
+{% endif %}
+
+{% endblock %}

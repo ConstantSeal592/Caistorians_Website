@@ -1,0 +1,38 @@
+{% extends "marketplace/base.html" %}
+
+{% block title %}{{ product.title }}{% endblock %}
+
+{% block content %}
+<div style="display: flex; gap: 30px; align-items: flex-start;">
+    <div>
+        <img src="{{ product.image.url }}" width="300" />
+    </div>
+    
+    <div>
+        <h1>{{ product.title }}</h1>
+        <p>{{ product.description }}</p>
+        <strong>Price: ${{ product.price }}</strong>
+        <p>Seller: <a href="{% url 'view_seller_profile' product.seller.username %}">{{ product.seller.username }}</a></p>
+
+        {% if product.tags.all %}
+            <p><strong>Tags:</strong><br>
+                {% for tag in product.tags.all %}
+                    <span style="background:#eee; padding:3px 8px; border-radius:4px; margin-right:5px;">
+                        {{ tag.name }}
+                    </span>
+                {% endfor %}
+            </p>
+        {% endif %}
+
+        <form action="{% url 'add_to_basket' product.id %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Add to Basket</button>
+        </form>
+
+        <form method="post" action="{% url 'buy_now' product.pk %}" style="margin-top: 10px;">
+            {% csrf_token %}
+            <button type="submit">Buy Now</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

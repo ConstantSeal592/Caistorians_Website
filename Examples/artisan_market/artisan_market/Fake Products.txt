@@ -1,0 +1,35 @@
+python manage.py shell
+
+
+Paste in shell:
+
+
+from marketplace.models import Product
+from django.contrib.auth.models import User
+from faker import Faker
+import random
+
+fake = Faker()
+
+# Create or get a test user
+user, created = User.objects.get_or_create(username='testuser')
+if created:
+    user.set_password('password123')
+    user.save()
+
+# Create 10 fake products
+for _ in range(10):
+    Product.objects.create(
+        seller=user,
+        title=fake.sentence(nb_words=3),
+        description=fake.text(),
+        price=round(random.uniform(5.0, 100.0), 2),
+        image='product_images/default.jpg'  # Ensure this path/image exists or allow blank=True
+    )
+
+print("✅ Fake products created.")
+
+
+Then:
+
+exit()

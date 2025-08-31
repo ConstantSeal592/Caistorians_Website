@@ -1,0 +1,23 @@
+{% extends "marketplace/base.html" %}
+
+{% block title %}Checkout{% endblock %}
+
+{% block content %}
+
+{% if buy_now %}
+  <h2>Buy Now</h2>
+  <p>{{ quantity }} × {{ product.title }} - ${{ product.price }}</p>
+  <p><strong>Total:</strong> ${{ total_price }}</p>
+{% else %}
+  <h2>Your Basket</h2>
+  {% for item in basket_items %}
+    <p>{{ item.quantity }} × {{ item.product.title }} - ${{ item.total_price }}</p>
+  {% endfor %}
+  <p><strong>Total:</strong> ${{ total_price }}</p>
+{% endif %}
+
+<form method="post">
+  {% csrf_token %}
+  <button type="submit">Pay Now</button>
+</form>
+{% endblock %}

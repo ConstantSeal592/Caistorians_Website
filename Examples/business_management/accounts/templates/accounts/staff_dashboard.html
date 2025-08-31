@@ -1,0 +1,19 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+
+<h2>Your Shifts</h2>
+
+{% if shifts %}
+  <ul>
+    {% for shift in shifts %}
+      <li>{{ shift.get_weekday_display }}: {{ shift.start_time|time:"H:i" }} - {{ shift.end_time|time:"H:i" }}</li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>No shifts assigned yet.</p>
+{% endif %}
+
+
+<li><a href="{% url 'salons:manage_shifts' %}">Manage Staff Shifts</a></li>
+{% endblock %}

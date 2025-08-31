@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>{% block title %}Artisan Market{% endblock %}</title>
+</head>
+<body>
+  <nav>
+    <a href="{% url 'product_list' %}">Home</a> |
+    <a href="{% url 'for_you' %}">For You</a> |
+    <a href="{% url 'view_basket' %}">View Basket</a> |
+
+    {% if user.is_authenticated %}
+    <a href="{% url 'my_profile' %}">My Profile</a> |
+    <a href="{% url 'create_product' %}">List an Item</a> |
+    <a href="{% url 'upload_seller_video' %}" class="btn btn-primary">Upload a Video</a> |
+      <form method="post" action="{% url 'logout' %}" style="display: inline;">
+        {% csrf_token %}
+        <button type="submit" style="background: none; border: none; color: blue; text-decoration: underline; cursor: pointer;">
+          Logout
+        </button>
+      </form> |
+    {% else %}
+      <a href="{% url 'login' %}">Login</a> |
+      <a href="{% url 'register' %}">Register</a> |
+    {% endif %}
+
+  </nav>
+
+  <hr>
+
+  {% block content %}
+  <!-- Page-specific content will go here -->
+  {% endblock %}
+</body>
+</html>

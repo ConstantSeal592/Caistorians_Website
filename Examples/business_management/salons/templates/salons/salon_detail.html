@@ -1,0 +1,81 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+  <h1>{{ salon.name }}</h1>
+
+  <p><strong>Address:</strong> {{ salon.address }}</p>
+  <p><strong>Phone:</strong> {{ salon.phone_number }}</p>
+  <p><strong>Description:</strong> {{ salon.description }}</p>
+
+    <h2>Team Members</h2>
+
+    {% if salon.users.exists %}
+    <ul>
+        {% for user in salon.users.all %}
+        <li>
+            {% if user.get_full_name %}
+            {{ user.get_full_name }}
+            {% else %}
+            {{ user.username }}
+            {% endif %}
+            ({{ user.email }}) — Role: {{ user.get_role_display }}
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No team members assigned to this salon.</p>
+    {% endif %}
+    <h2>Services</h2>
+    {% if salon.services.all %}
+        <ul>
+        {% for service in salon.services.all %}
+            <li>
+            {{ service.name }} — ${{ service.price }} — {{ service.duration_minutes }} minutes
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No services listed for this salon.</p>
+    {% endif %}
+
+
+    <h2>Opening Hours</h2>
+
+    {% if holidays %}
+      <h3>Upcoming Holiday Overrides</h3>
+      <ul>
+        {% for holiday in holidays %}
+          <li>
+            <strong>{{ holiday.date|date:"D, M j, Y" }}:</strong>
+            {% if holiday.is_closed %}
+              Closed
+            {% else %}
+              Open from {{ holiday.open_time|time:"H:i" }} to {{ holiday.close_time|time:"H:i" }}
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    
+    <h3>Regular Weekly Hours</h3>
+    <ul>
+      {% regroup opening_hours by day_of_week as day_groups %}
+    
+      {% for day_group in day_groups %}
+        <li>
+          <strong>
+            {% with day_name=day_group.grouper %}
+              {% if day_name == 0 %}Monday{% elif day_name == 1 %}Tuesday{% elif day_name == 2 %}Wednesday{% elif day_name == 3 %}Thursday{% elif day_name == 4 %}Friday{% elif day_name == 5 %}Saturday{% elif day_name == 6 %}Sunday{% endif %}
+            {% endwith %}
+          </strong>:
+          {% for oh in day_group.list %}
+            {{ oh.open_time|time:"H:i" }} - {{ oh.close_time|time:"H:i" }}{% if not forloop.last %}, {% endif %}
+          {% endfor %}
+        </li>
+      {% empty %}
+        <li>No regular opening hours set.</li>
+      {% endfor %}
+    </ul>
+    
+  <p><a href="{% url 'salons:salon_list' %}">Back to all salons</a></p>
+{% endblock %}

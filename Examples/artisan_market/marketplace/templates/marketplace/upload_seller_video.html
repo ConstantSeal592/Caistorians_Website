@@ -1,0 +1,14 @@
+{% extends "marketplace/base.html" %}
+
+{% block content %}
+  <h2>Upload a Seller Video</h2>
+
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit">Upload</button>
+  </form>
+
+  <p><a href="{% url 'view_seller_profile' request.user.username %}">Back to Profile</a></p>
+{% endblock %}

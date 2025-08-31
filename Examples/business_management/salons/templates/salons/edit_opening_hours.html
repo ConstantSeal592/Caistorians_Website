@@ -1,0 +1,37 @@
+{% extends "core/base.html" %}
+
+{% block title %}Edit Opening Hours{% endblock %}
+
+{% block content %}
+  <h1>Edit Opening Hours</h1>
+
+  <form method="post">
+    {% csrf_token %}
+    {{ formset.management_form }}
+    <table>
+      <thead>
+        <tr>
+          <th>Day</th>
+          <th>Open Time</th>
+          <th>Close Time</th>
+          <th>Delete?</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for form in formset %}
+        <tr>
+          <td>{{ form.day }}</td>
+          <td>{{ form.open_time }}</td>
+          <td>{{ form.close_time }}</td>
+          <td>{{ form.DELETE }}</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="4">No opening hours found.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <button type="submit">Save</button>
+  </form>
+{% endblock %}
+

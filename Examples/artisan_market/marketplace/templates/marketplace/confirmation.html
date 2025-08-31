@@ -1,0 +1,9 @@
+{% extends "marketplace/base.html" %}
+
+{% block title %}Order Confirmed{% endblock %}
+
+{% block content %}
+  <h1>🎉 Thank you!</h1>
+  <p>Your order has been placed successfully.</p>
+  <a href="{% url 'view_basket' %}">Return to Basket</a>
+{% endblock %}

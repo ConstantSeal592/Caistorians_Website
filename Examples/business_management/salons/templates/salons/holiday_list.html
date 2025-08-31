@@ -1,0 +1,28 @@
+{% extends "core/base.html" %}
+
+{% block title %}Holiday Overrides{% endblock %}
+
+{% block content %}
+  <h1>Holiday Overrides</h1>
+
+  <p><a href="{% url 'salons:holiday_add' %}">Add New Holiday Override</a></p>
+
+  {% if holidays %}
+    <ul>
+      {% for h in holidays %}
+        <li>
+          {{ h.date }}: 
+          {% if h.is_closed %}
+            Closed
+          {% else %}
+            Open from {{ h.open_time }} to {{ h.close_time }}
+          {% endif %}
+          — <a href="{% url 'salons:holiday_edit' h.id %}">Edit</a> | 
+          <a href="{% url 'salons:holiday_delete' h.id %}">Delete</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No holiday overrides set.</p>
+  {% endif %}
+{% endblock %}

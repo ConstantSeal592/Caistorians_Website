@@ -1,0 +1,69 @@
+{% extends "marketplace/base.html" %}
+
+{% block title %}For You{% endblock %}
+
+{% block content %}
+
+<h1>For You</h1>
+
+<ul id="product-list" style="list-style: none; padding: 0;">
+  {% include 'marketplace/partials/product_list_items.html' with products=page_obj %}
+</ul>
+
+<div id="loading" style="display:none; text-align:center; margin: 20px;">
+  <strong>Loading...</strong>
+</div>
+
+{# Embed pagination data safely as JSON #}
+<script id="pagination-data" type="application/json">
+  {
+    "page": {{ page_obj.number|default:1 }},
+    "totalPages": {{ page_obj.paginator.num_pages|default:1 }}
+  }
+</script>
+
+<script>
+  // Parse JSON data safely from the script tag
+  const paginationData = JSON.parse(document.getElementById('pagination-data').textContent);
+  let page = paginationData.page;
+  const totalPages = paginationData.totalPages;
+  let loading = false;
+
+  window.addEventListener('scroll', () => {
+    if (loading) return;
+
+    // When user scrolls to near bottom (100px from bottom)
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100) {
+      if (page >= totalPages) return; // No more pages
+
+      loading = true;
+      page += 1;
+
+      document.getElementById('loading').style.display = 'block';
+
+      fetch(`?page=${page}`, {
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest'
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('loading').style.display = 'none';
+
+        if (data.products_html.trim() !== '') {
+          const productList = document.getElementById('product-list');
+          productList.insertAdjacentHTML('beforeend', data.products_html);
+        }
+        loading = false;
+      })
+      .catch(() => {
+        document.getElementById('loading').style.display = 'none';
+        loading = false;
+      });
+    }
+  });
+</script>
+
+
+<p><centre>You have reached the end of our products</centre></p>
+{% endblock %}

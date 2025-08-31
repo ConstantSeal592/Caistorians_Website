@@ -1,0 +1,8 @@
+{% extends "marketplace/base.html" %}
+
+{% block title %}Logged Out{% endblock %}
+
+{% block content %}
+  <h2>You have been logged out.</h2>
+  <p>Thank you for visiting. You can <a href="{% url 'login' %}">log in again</a> if you want.</p>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+<h1>Manager Dashboard</h1>
+
+<section>
+  <h2>Salon Overview</h2>
+  <!-- Placeholder: Display salon info summary here -->
+  <p>Salon Name: {{ request.user.salon.name }}</p>
+  <p>Address: {{ request.user.salon.address }}</p>
+  <p>Phone: {{ request.user.salon.phone }}</p>
+  <p>Description: {{ request.user.salon.description }}</p>
+</section>
+
+<section>
+  <h2>Edit Salon Details</h2>
+  <p><a href="{% url 'salons:edit_salon' request.user.salon.id %}">Edit Salon Information</a></p>
+</section>
+
+<section>
+  <h2>Services</h2>
+  <!-- Placeholder: List of salon services here -->
+  <p><a href="{% url 'services:service_list' request.user.salon.id %}">View / Manage Services</a></p>
+</section>
+
+<section>
+  <h2>Staff Management</h2>
+  <p><a href="{% url 'accounts:my_staff' %}">View / Manage Staff</a></p>
+</section>
+
+<!-- Add more sections for appointments, reports, etc -->
+
+{% endblock %}

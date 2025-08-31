@@ -1,0 +1,22 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+  <h2>Manage Services for {{ salon.name }}</h2>
+
+  {% if services %}
+    <ul>
+      {% for service in services %}
+        <li>
+          {{ service.name }} — ${{ service.price }} — {{ service.duration_minutes }} mins
+          (<a href="{% url 'salons:service_edit' service.pk %}">Edit</a>)
+          (<a href="{% url 'salons:service_delete' service.pk %}">Delete</a>)
+
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No services listed for this salon yet.</p>
+  {% endif %}
+
+  <a href="{% url 'salons:service_form' salon.id %}">Add New Service</a>
+{% endblock %}
